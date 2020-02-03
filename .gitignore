@@ -7,4 +7,6 @@
 **/uploads
 _nodemon.log
 nginx_caches/
+images/
+pages/
 
