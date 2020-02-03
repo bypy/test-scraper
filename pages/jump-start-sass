@@ -1,0 +1,684 @@
+<!doctype html>
+<!--[if !IE]>
+<html class="no-js non-ie" lang="en-US"> <![endif]-->
+<!--[if IE 7 ]>
+<html class="no-js ie7" lang="en-US"> <![endif]-->
+<!--[if IE 8 ]>
+<html class="no-js ie8" lang="en-US"> <![endif]-->
+<!--[if IE 9 ]>
+<html class="no-js ie9" lang="en-US"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html class="no-js" lang="en-US"> <!--<![endif]-->
+<head>
+<meta name="referrer" content="unsafe-url">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Jump Start Sass: Get Up to Speed With Sass in a Weekend &#8211; ScanLibs</title>
+<meta name="robots" content="&lt;meta name=&quot;robots&quot; content=&quot;index,nofollow&quot; /&gt;
+" />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel='stylesheet' id='wp-block-library-css'  href='https://scanlibs.com/wp-includes/css/dist/block-library/style.min.css' type='text/css' media='all' />
+<link rel='stylesheet' id='sparkling-bootstrap-css'  href='https://scanlibs.com/wp-content/themes/sparkling/inc/css/bootstrap.min.css' type='text/css' media='all' />
+<link rel='stylesheet' id='sparkling-icons-css'  href='https://scanlibs.com/wp-content/themes/sparkling/inc/css/font-awesome.min.css' type='text/css' media='all' />
+<link rel='stylesheet' id='sparkling-fonts-css'  href='//fonts.googleapis.com/css?family=Open+Sans%3A400italic%2C400%2C600%2C700%7CRoboto+Slab%3A400%2C300%2C700&#038;ver=5.3.2' type='text/css' media='all' />
+<link rel='stylesheet' id='sparkling-style-css'  href='https://scanlibs.com/wp-content/themes/sparkling-ch/style.css' type='text/css' media='all' />
+<link rel='stylesheet' id='wpdreams-asl-basic-css'  href='https://scanlibs.com/wp-content/plugins/ajax-search-lite/css/style.basic.css' type='text/css' media='all' />
+<link rel='stylesheet' id='wpdreams-ajaxsearchlite-css'  href='https://scanlibs.com/wp-content/plugins/ajax-search-lite/css/style-curvy-blue.css' type='text/css' media='all' />
+<script type='text/javascript' src='https://scanlibs.com/wp-includes/js/jquery/jquery.js'></script>
+<script type='text/javascript' src='https://scanlibs.com/wp-includes/js/jquery/jquery-migrate.min.js'></script>
+<script type='text/javascript' src='https://scanlibs.com/wp-content/themes/sparkling/inc/js/modernizr.min.js'></script>
+<script type='text/javascript' src='https://scanlibs.com/wp-content/themes/sparkling/inc/js/bootstrap.min.js'></script>
+<script type='text/javascript' src='https://scanlibs.com/wp-content/themes/sparkling/inc/js/functions.min.js'></script>
+<link rel="shortcut icon" type="image/png" href="/favicon.png" />
+<style type="text/css">.btn-default, .label-default, .flex-caption h2, .btn.btn-default.read-more,button,
+              .navigation .wp-pagenavi-pagination span.current,.navigation .wp-pagenavi-pagination a:hover,
+              .woocommerce a.button, .woocommerce button.button,
+              .woocommerce input.button, .woocommerce #respond input#submit.alt,
+              .woocommerce a.button, .woocommerce button.button,
+              .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt { background-color: #0e83cd; border-color: #0e83cd;}.site-main [class*="navigation"] a, .more-link, .pagination>li>a, .pagination>li>span { color: #0e83cd}.btn-default:hover, .label-default[href]:hover, .tagcloud a:hover,button, .main-content [class*="navigation"] a:hover,.label-default[href]:focus, #infinite-handle span:hover,.btn.btn-default.read-more:hover, .btn-default:hover, .scroll-to-top:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .site-main [class*="navigation"] a:hover, .more-link:hover, #image-navigation .nav-previous a:hover, #image-navigation .nav-next a:hover, .cfa-button:hover,.woocommerce a.button:hover, .woocommerce button.button:hover, .woocommerce input.button:hover, .woocommerce #respond input#submit.alt:hover, .woocommerce a.button:hover, .woocommerce button.button:hover, .woocommerce input.button:hover,.woocommerce a.button.alt:hover, .woocommerce button.button.alt:hover, .woocommerce input.button.alt:hover{ background-color: #000000; border-color: #000000; }.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus, .pagination>li>span:hover {color: #000000;}.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {color: #878787;}.entry-content {font-family: Georgia; font-size:14px; font-weight: normal; color:#212121;}</style>                <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+                <style type="text/css" id="custom-background-css">
+body.custom-background { background-image: url("https://scanlibs.com//wp-content/cover/1.jpg"); background-position: left top; background-size: auto; background-repeat: repeat; background-attachment: fixed; }
+</style>
+	                <style type="text/css">
+                    <!--
+                    
+            @font-face {
+                font-family: 'aslsicons2';
+                src: url('https://scanlibs.com/wp-content/plugins/ajax-search-lite/css/fonts/icons2.eot');
+                src: url('https://scanlibs.com/wp-content/plugins/ajax-search-lite/css/fonts/icons2.eot?#iefix') format('embedded-opentype'),
+                     url('https://scanlibs.com/wp-content/plugins/ajax-search-lite/css/fonts/icons2.woff2') format('woff2'),
+                     url('https://scanlibs.com/wp-content/plugins/ajax-search-lite/css/fonts/icons2.woff') format('woff'),
+                     url('https://scanlibs.com/wp-content/plugins/ajax-search-lite/css/fonts/icons2.ttf') format('truetype'),
+                     url('https://scanlibs.com/wp-content/plugins/ajax-search-lite/css/fonts/icons2.svg#icons') format('svg');
+                font-weight: normal;
+                font-style: normal;
+            }
+            div[id*='ajaxsearchlitesettings'].searchsettings .asl_option_inner label {
+                font-size: 0px !important;
+                color: rgba(0, 0, 0, 0);
+            }
+            div[id*='ajaxsearchlitesettings'].searchsettings .asl_option_inner label:after {
+                font-size: 11px !important;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 1;
+            }
+            div[id*='ajaxsearchlite'].wpdreams_asl_container {
+                width: 100%;
+                margin: 0px 0px 0px 0px;
+            }
+            div[id*='ajaxsearchliteres'].wpdreams_asl_results div.resdrg span.highlighted {
+                font-weight: bold;
+                color: rgba(217, 49, 43, 1);
+                background-color: rgba(238, 238, 238, 1);
+            }
+            div[id*='ajaxsearchliteres'].wpdreams_asl_results .results div.asl_image {
+                width: 70px;
+                height: 85px;
+            }
+            div.asl_r .results {
+                max-height: auto;
+            }
+                                -->
+                </style>
+                            <script type="text/javascript">
+                if ( typeof _ASL !== "undefined" && _ASL !== null && typeof _ASL.initialize !== "undefined" )
+                    _ASL.initialize();
+            </script>
+            			<script type="text/javascript" >
+				window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+				ga('create', 'UA-57412021-1', 'auto');
+				// Plugins
+				
+				ga('send', 'pageview');
+			</script>
+			<script async src="https://www.google-analytics.com/analytics.js"></script>
+					<style type="text/css" id="wp-custom-css">
+			.blockSpoiler.dl-links {
+    color: #F7F7F7;
+}
+.dl-links {
+    background-color: #A63E03!important;
+    border-color: #A63E03;
+}
+
+.blockSpoiler {
+    display: block;
+    margin: 20px auto 0px;
+    padding: 7px 0;
+    background-color: #F2F2F2;
+    /* border: 1px solid #DEDEDE; */
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    text-align: left;
+}
+.full_topic i {
+    font-style: italic;
+}
+
+.pl1em {
+    padding-left: 0.4em;
+}
+.sa.sa-download-spoiler:before {
+    content: '\e81b';
+}
+
+.sa:after, .sa:before {
+    font-family: "additionalwebfont";
+    font-style: normal;
+    font-weight: normal;
+    speak: none;
+    display: inline-block;
+    text-decoration: inherit;
+    width: 1em;
+    margin-right: .2em;
+    text-align: center;
+    -webkit-font-feature-settings: normal;
+    font-feature-settings: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1em;
+    margin-left: .2em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.blockSpoiler span.blockTitle {
+    /*font-size: 15.2px;*/
+    font-size: 1.4rem;
+    display: inline-block;
+    padding-left: 19px;
+    text-transform: uppercase;
+}
+.blockSpoiler-content.c-dl-links {
+    border: 1px solid #A63E03;
+}
+.blockSpoiler-content.txtleft {
+    text-align: left!important;
+    padding: 1.2em 1.2em 1.2em;
+}
+.blockSpoiler-content {
+    text-align: center;
+    margin-bottom: 20px;
+    border: 1px solid #DEDEDE;
+    border-top: none;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+.blockSpoiler-content.c-dl-links .resolve-captcha-header-box {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.resolve-captcha-header-box {
+    margin-top: 20px;
+    color: #595959;
+}
+.blockSpoiler-content.c-dl-links .g-recaptcha {
+    padding-left: 20px;
+}
+
+.download-links-recaptcha-widget-box {
+    margin-top: 20px;
+}
+
+/*---Hide reCaptcha v3 visible seal---*/.grecaptcha-badge {opacity:0 !important;}		</style>
+		
+</head>
+
+<body class="post-template-default single single-post postid-10887 single-format-standard custom-background">
+<a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+<div id="page" class="hfeed site">
+
+	<header id="masthead" class="site-header">
+		<nav class="navbar navbar-default ">
+			<div class="container">
+				<div class="row">
+					<div class="site-navigation-inner col-sm-12">
+						<div class="navbar-header">
+							<button type="button" class="btn navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+
+							
+							
+							<div id="logo">
+								<p class="site-name">									<a class="navbar-brand" href="https://scanlibs.com/" title="ScanLibs" rel="home">ScanLibs</a>
+								</p>							</div><!-- end of #logo -->
+
+							
+						</div>
+						<div class="collapse navbar-collapse navbar-ex1-collapse"><ul id="menu-menu" class="nav navbar-nav"><li id="menu-item-18805" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-18805"><a title="Books" href="https://scanlibs.com/category/books/">Books</a></li>
+<li id="menu-item-18806" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-18806"><a title="Video" href="https://scanlibs.com/category/video/">Video</a></li>
+</ul></div>					</div>
+				</div>
+			</div>
+		</nav><!-- .site-navigation -->
+	</header><!-- #masthead -->
+
+	<div id="content" class="site-content">
+
+		<div class="top-section">
+								</div>
+
+		<div class="container main-content-area">
+            			<div class="row pull-left">
+				<div class="main-content-inner col-sm-12 col-md-8">
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+<article id="post-10887" class="post-10887 post type-post status-publish format-standard has-post-thumbnail hentry category-books category-html-css tag-css tag-web-design">
+		<div class="post-inner-content">
+		<header class="entry-header page-header">
+
+			<h1 class="entry-title ">Jump Start Sass: Get Up to Speed With Sass in a Weekend</h1>
+
+			<div class="entry-meta">
+				<span class="posted-on"><i class="fa fa-calendar"></i> <a href="https://scanlibs.com/jump-start-sass/" rel="bookmark"><time class="entry-date published" datetime="2017-04-26T00:07:51+04:00">April 26, 2017</time></a></span><span class="byline"> <i class="fa fa-user"></i> <span class="author vcard"><a class="url fn n" href="https://scanlibs.com/author/scanlibs/">scanlibs</a></span></span>
+								<span class="cat-links"><i class="fa fa-folder-open-o"></i>
+					 <a href="https://scanlibs.com/category/books/" rel="category tag">Books</a>, <a href="https://scanlibs.com/category/html-css/" rel="category tag">HTML, CSS</a>				</span>
+								
+			</div><!-- .entry-meta -->
+		</header><!-- .entry-header -->
+
+		<div class="entry-content">
+			
+
+
+
+
+
+
+<img class="alignleft" src="/wp-content/cover/jump-start-sass.jpg" alt="Jump Start Sass: Get Up to Speed With Sass in a Weekend" width="185" height="270" /><span class="rewlink mylink" data-url="goto/b3VHSEx1VGEwcy94S0ZiSFFDU1JOV2hNL0trNWFrcThvUjFqUXZ3VjFnQ2ZURWZuTzFJd2hpMWRGamdnOFIxRTVzMHhtZz09OjpZVFbg0dTzOfqLbNc6OjQ1f0jGCNfUYwQ+wtGPxxU=" title="Reviews on Amazon">Reviews</span><br/>Author: Hugo Giraudel, Miriam Suzanne<br/>Pub Date: 2016<br/>ISBN: 978-0994182678<br/>Pages: 150<br/>Language: English<br/>Format: PDF<br/>Size: 10 Mb<br/><br/>
+<span id="more-10887"></span>
+<a class="mybtn" href="#download" title="">Download</a> 
+
+<br clear="left" /><br/><p>Get a Jump Start on the popular CSS preprocessor Sass today!<br />
+Using Sass, you can write your stylesheets in a more concise, dynamic, and readable way, and cut down many of the tedious repetitive tasks that come with writing vanilla CSS. Sass simplifies your stylesheets, adding some useful features missing from CSS. Most importantly, Sass will save you time.<br />
+This book provides a thorough introduction to Sass for the beginner. In it, you&#8217;ll learn:</p>
+<ul>
+<li>What preprocessors are and how they can be useful</li>
+<li>Installation and getting started</li>
+<li>Variables, mixins, and functions</li>
+<li>Loops and conditions</li>
+<li>Nesting</li>
+<li>Extend</li>
+<li>Warnings &amp; errors</li>
+<li>Project architecture</li>
+<li>The Sass ecosystem</li>
+<li>And more!</li>
+</ul>
+
+<div class="spoiler-wrap"><div style="text-align:left;color:black" class="spoiler-head folded">+</div><div style="background-color:#f5f5f5;" class="spoiler-body"><p>Table of Contents</p>
+<p>1. Hello World!<br />
+2. Getting Started<br />
+3. Variables<br />
+4. Functions and Mixins<br />
+5. Loops and Conditions<br />
+6. Nesting<br />
+7. The @extend Directive<br />
+8. Warnings and Errors<br />
+9. Architecture<br />
+10. The Sass Ecosystem</p>
+</div></div><div class="blockSpoiler dl-links" id="download">
+	   	 	<span class="blockTitle pl0">Download from free file storage </span>
+	    </div>
+		<div class="blockSpoiler-content txtleft c-dl-links">
+	     
+	    <div class="resolve-captcha-header-box">
+		     <p>Resolve the captcha to access the links!</p>
+	    </div>    
+	    	    
+	    <div class="g-recaptcha download-links-recaptcha-widget-box" data-callback="recaptchaCallback" id="rcaptcha" data-sitekey="6LceSRsTAAAAAFHy4L8l0OmWuWVDOj3AzxzG9cDJ">
+		</div><span id="captcha" style="margin-left:100px;color:red"></span>
+	    </div>			
+						
+					</div><!-- .entry-content -->
+
+		<!-- share42 -->
+		<div align="right" class="share42init" data-url="https://scanlibs.com/jump-start-sass/" data-title="Jump Start Sass: Get Up to Speed With Sass in a Weekend"></div>
+		<script type="text/javascript" src="/wp-content/share42/share42.js"></script>
+		<!-- share42 -->
+		
+		<footer class="entry-meta">
+
+	    		      <!-- tags -->
+	      <div class="tagcloud">
+
+	          <a href="https://scanlibs.com/tag/css/">CSS</a> <a href="https://scanlibs.com/tag/web-design/">Web Design</a> 
+	      </div>
+	      <!-- end tags -->
+	      
+		</footer><!-- .entry-meta -->
+	</div>
+
+
+</article><!-- #post-## -->
+
+	<nav class="navigation post-navigation" role="navigation" aria-label="Posts">
+		<h2 class="screen-reader-text">Post navigation</h2>
+		<div class="nav-links"><div class="nav-previous"><a href="https://scanlibs.com/mastering-nginx-2nd/" rel="prev"><i class="fa fa-chevron-left"></i> <span class="post-title">Mastering NGINX, 2nd Edition</span></a></div><div class="nav-next"><a href="https://scanlibs.com/spring-mvc-beginners-guide-2nd/" rel="next"><span class="post-title">Spring MVC: Beginner&#8217;s Guide, 2nd Edition <i class="fa fa-chevron-right"></i></span></a></div></div>
+	</nav>
+		</main><!-- #main -->
+	</div><!-- #primary -->
+
+</div>
+	<div id="secondary" class="widget-area col-sm-12 col-md-4" role="complementary">
+		<div class="well">
+						<aside id="search-9" class="widget widget_search"><div id='ajaxsearchlite1' class="wpdreams_asl_container asl_w asl_m asl_m_1">
+<div class="probox">
+
+    
+    <div class='promagnifier'>
+                <div class='innericon'>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+                <path id="magnifier-2-icon" d="M460.355,421.59L353.844,315.078c20.041-27.553,31.885-61.437,31.885-98.037
+                    C385.729,124.934,310.793,50,218.686,50C126.58,50,51.645,124.934,51.645,217.041c0,92.106,74.936,167.041,167.041,167.041
+                    c34.912,0,67.352-10.773,94.184-29.158L419.945,462L460.355,421.59z M100.631,217.041c0-65.096,52.959-118.056,118.055-118.056
+                    c65.098,0,118.057,52.959,118.057,118.056c0,65.096-52.959,118.056-118.057,118.056C153.59,335.097,100.631,282.137,100.631,217.041
+                    z"/>
+            </svg>
+        </div>
+    </div>
+
+    
+    
+    <div class='prosettings' style='display:none;' data-opened=0>
+                <div class='innericon'>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+                <polygon id="arrow-25-icon" transform = "rotate(90 256 256)" points="142.332,104.886 197.48,50 402.5,256 197.48,462 142.332,407.113 292.727,256 "/>
+            </svg>
+        </div>
+    </div>
+
+    
+    
+    <div class='proinput'>
+        <form autocomplete="off" aria-label='Ajax search form'>
+            <input aria-label='Search input' type='search' class='orig' name='phrase' placeholder='Search...' value='' autocomplete="off"/>
+            <input aria-label='Autocomplete input, do not use this' type='text' class='autocomplete' name='phrase' value='' autocomplete="off"/>
+            <span class='loading'></span>
+            <input type='submit' value="Start search" style='width:0; height: 0; visibility: hidden;'>
+        </form>
+    </div>
+
+    
+    
+    <div class='proloading'>
+
+        <div class="asl_loader"><div class="asl_loader-inner asl_simple-circle"></div></div>
+
+            </div>
+
+            <div class='proclose'>
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                 y="0px"
+                 width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512"
+                 xml:space="preserve">
+            <polygon id="x-mark-icon"
+                     points="438.393,374.595 319.757,255.977 438.378,137.348 374.595,73.607 255.995,192.225 137.375,73.622 73.607,137.352 192.246,255.983 73.622,374.625 137.352,438.393 256.002,319.734 374.652,438.378 "/>
+        </svg>
+        </div>
+    
+    
+</div>
+</div>
+
+
+<div id='ajaxsearchlitesettings1' class="searchsettings wpdreams_asl_settings asl_w asl_s asl_s_1">
+    <form name='options' autocomplete='off'>
+
+        
+                <fieldset class="asl_sett_scroll">
+            <legend style="display: none;">Generic selectors</legend>
+            <div class="asl_option_inner hiddend">
+                <input type='hidden' name='qtranslate_lang' id='qtranslate_lang'
+                       value='0'/>
+            </div>
+
+	        
+            
+            <div class="asl_option">
+                <div class="asl_option_inner">
+                    <input type="checkbox" value="checked" id="set_exactonly1"
+                           title="Exact matches only"
+                           name="set_exactonly" />
+                    <label for="set_exactonly1">Exact matches only</label>
+                </div>
+                <div class="asl_option_label">
+                    Exact matches only                </div>
+            </div>
+            <div class="asl_option">
+                <div class="asl_option_inner">
+                    <input type="checkbox" value="None" id="set_intitle1"
+                           title="Search in title"
+                           name="set_intitle"  checked="checked"/>
+                    <label for="set_intitle1">Search in title</label>
+                </div>
+                <div class="asl_option_label">
+                    Search in title                </div>
+            </div>
+            <div class="asl_option">
+                <div class="asl_option_inner">
+                    <input type="checkbox" value="None" id="set_incontent1"
+                           title="Search in content"
+                           name="set_incontent"  checked="checked"/>
+                    <label for="set_incontent1">Search in content</label>
+                </div>
+                <div class="asl_option_label">
+                    Search in content                </div>
+            </div>
+            <div class="asl_option_inner hiddend">
+                <input type="checkbox" value="None" id="set_inexcerpt1"
+                       title="Search in excerpt"
+                       name="set_inexcerpt"  checked="checked"/>
+                <label for="set_inexcerpt1">Search in excerpt</label>
+            </div>
+
+            <div class="asl_option hiddend">
+                <div class="asl_option_inner">
+                    <input type="checkbox" value="None" id="set_inposts1"
+                           title=""
+                           name="set_inposts"  checked="checked"/>
+                    <label for="set_inposts1"></label>
+                </div>
+                <div class="asl_option_label">
+                                    </div>
+            </div>
+            <div class="asl_option hiddend">
+                <div class="asl_option_inner">
+                    <input type="checkbox" value="None" id="set_inpages1"
+                           title=""
+                           name="set_inpages" />
+                    <label for="set_inpages1"></label>
+                </div>
+                <div class="asl_option_label">
+                                    </div>
+            </div>
+                    </fieldset>
+                    </form>
+</div>
+
+<div id='ajaxsearchliteres1' class='vertical wpdreams_asl_results asl_w asl_r asl_r_1'>
+
+    
+    <div class="results">
+
+        
+            <div class="resdrg">
+            </div>
+
+        
+    </div>
+
+    
+                    <p class='showmore'>
+            <a>More results...</a>
+        </p>
+        
+</div>
+
+    <div id="asl_hidden_data">
+        <svg style="position:absolute" height="0" width="0">
+            <filter id="aslblur">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="4"/>
+            </filter>
+        </svg>
+        <svg style="position:absolute" height="0" width="0">
+            <filter id="no_aslblur"></filter>
+        </svg>
+
+    </div>
+
+<div class="asl_init_data wpdreams_asl_data_ct" style="display:none !important;" id="asl_init_id_1" data-asldata="ew0KICAgICJob21ldXJsIjogImh0dHBzOi8vc2NhbmxpYnMuY29tLyIsDQogICAgInJlc3VsdHN0eXBlIjogInZlcnRpY2FsIiwNCiAgICAicmVzdWx0c3Bvc2l0aW9uIjogImhvdmVyIiwNCiAgICAiaXRlbXNjb3VudCI6IDQsDQogICAgImltYWdld2lkdGgiOiA3MCwNCiAgICAiaW1hZ2VoZWlnaHQiOiA3MCwNCiAgICAicmVzdWx0aXRlbWhlaWdodCI6ICI3MHB4IiwNCiAgICAic2hvd2F1dGhvciI6IDAsDQogICAgInNob3dkYXRlIjogMCwNCiAgICAic2hvd2Rlc2NyaXB0aW9uIjogMCwNCiAgICAiY2hhcmNvdW50IjogIDMsDQogICAgImRlZmF1bHRJbWFnZSI6ICJodHRwOi8vc2NhbmxpYnMuY29tL3dwLWNvbnRlbnQvcGx1Z2lucy9hamF4LXNlYXJjaC1saXRlL2ltZy9kZWZhdWx0LmpwZyIsDQogICAgImhpZ2hsaWdodCI6IDAsDQogICAgImhpZ2hsaWdodHdob2xld29yZHMiOiAxLA0KICAgICJzY3JvbGxUb1Jlc3VsdHMiOiAwLA0KICAgICJyZXN1bHRhcmVhY2xpY2thYmxlIjogMSwNCiAgICAiYXV0b2NvbXBsZXRlIjogew0KICAgICAgICAiZW5hYmxlZCIgOiAxLA0KICAgICAgICAibGFuZyIgOiAiZW4iDQogICAgfSwNCiAgICAidHJpZ2dlcm9udHlwZSI6IDEsDQogICAgInRyaWdnZXJfb25fY2xpY2siOiAwLA0KICAgICJ0cmlnZ2VyX29uX2ZhY2V0X2NoYW5nZSI6IDAsDQogICAgInNldHRpbmdzaW1hZ2Vwb3MiOiAicmlnaHQiLA0KICAgICJocmVzdWx0YW5pbWF0aW9uIjogImZ4LW5vbmUiLA0KICAgICJ2cmVzdWx0YW5pbWF0aW9uIjogImZ4LW5vbmUiLA0KICAgICJocmVzdWx0aGlkZWRlc2MiOiAiMSIsDQogICAgInByZXNjb250YWluZXJoZWlnaHQiOiAiNDAwcHgiLA0KICAgICJwc2hvd3N1YnRpdGxlIjogIjAiLA0KICAgICJwc2hvd2Rlc2MiOiAiMSIsDQogICAgImNsb3NlT25Eb2NDbGljayI6IDEsDQogICAgImlpZk5vSW1hZ2UiOiAiZGVzY3JpcHRpb24iLA0KICAgICJpaVJvd3MiOiAyLA0KICAgICJpaXRlbXNXaWR0aCI6IDIwMCwNCiAgICAiaWl0ZW1zSGVpZ2h0IjogMjAwLA0KICAgICJpaXNob3dPdmVybGF5IjogMSwNCiAgICAiaWlibHVyT3ZlcmxheSI6IDEsDQogICAgImlpaGlkZUNvbnRlbnQiOiAxLA0KICAgICJpaWFuaW1hdGlvbiI6ICIxIiwNCiAgICAiYW5hbHl0aWNzIjogMCwNCiAgICAiYW5hbHl0aWNzU3RyaW5nIjogImFqYXhfc2VhcmNoLXthc2xfdGVybX0iLA0KICAgICJyZWRpcmVjdG9uY2xpY2siOiAxLA0KICAgICJyZWRpcmVjdENsaWNrVG8iOiAicmVzdWx0c19wYWdlIiwNCiAgICAicmVkaXJlY3RDbGlja0xvYyI6ICJzYW1lIiwNCiAgICAicmVkaXJlY3Rfb25fZW50ZXIiOiAwLA0KICAgICJyZWRpcmVjdEVudGVyVG8iOiAiYWpheF9zZWFyY2giLA0KICAgICJyZWRpcmVjdEVudGVyTG9jIjogInNhbWUiLA0KICAgICJyZWRpcmVjdF91cmwiOiAiP3M9e3BocmFzZX0iLA0KICAgICJvdmVycmlkZXdwZGVmYXVsdCI6IDAsDQogICAgIm92ZXJyaWRlX21ldGhvZCI6ICJnZXQiDQp9DQo="></div>
+</aside><aside id="categories-3" class="widget widget_categories"><h3 class="widget-title">Categories</h3>		<ul>
+				<li class="cat-item cat-item-10"><a href="https://scanlibs.com/category/android/">Android</a>
+</li>
+	<li class="cat-item cat-item-12"><a href="https://scanlibs.com/category/assembler/">Assembler</a>
+</li>
+	<li class="cat-item cat-item-246"><a href="https://scanlibs.com/category/books/">Books</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="https://scanlibs.com/category/c/">C, C++</a>
+</li>
+	<li class="cat-item cat-item-41"><a href="https://scanlibs.com/category/c-sharp-net/">C#</a>
+</li>
+	<li class="cat-item cat-item-52"><a href="https://scanlibs.com/category/cms/">CMS</a>
+</li>
+	<li class="cat-item cat-item-49"><a href="https://scanlibs.com/category/database/">Database</a>
+</li>
+	<li class="cat-item cat-item-50"><a href="https://scanlibs.com/category/html-css/">HTML, CSS</a>
+</li>
+	<li class="cat-item cat-item-45"><a href="https://scanlibs.com/category/java/">Java</a>
+</li>
+	<li class="cat-item cat-item-44"><a href="https://scanlibs.com/category/javascript/">JavaScript</a>
+</li>
+	<li class="cat-item cat-item-57"><a href="https://scanlibs.com/category/linux/">Linux</a>
+</li>
+	<li class="cat-item cat-item-1"><a href="https://scanlibs.com/category/nocategory/">Other</a>
+</li>
+	<li class="cat-item cat-item-48"><a href="https://scanlibs.com/category/php/">PHP</a>
+</li>
+	<li class="cat-item cat-item-46"><a href="https://scanlibs.com/category/python/">Python</a>
+</li>
+	<li class="cat-item cat-item-53"><a href="https://scanlibs.com/category/ruby/">Ruby</a>
+</li>
+	<li class="cat-item cat-item-51"><a href="https://scanlibs.com/category/seo/">SEO</a>
+</li>
+	<li class="cat-item cat-item-54"><a href="https://scanlibs.com/category/swift/">Swift</a>
+</li>
+	<li class="cat-item cat-item-243"><a href="https://scanlibs.com/category/video/">Video</a>
+</li>
+		</ul>
+			</aside>		</div>
+	</div><!-- #secondary -->
+			</div><!-- close .*-inner (main-content or sidebar, depending if sidebar is used) -->
+		</div><!-- close .row -->
+	</div><!-- close .container -->
+</div><!-- close .site-content -->
+
+	<div id="footer-area">
+		<div class="container footer-inner">
+			<div class="row">
+				
+	
+	<div class="footer-widget-area">
+				<div class="col-sm-4 footer-widget" role="complementary">
+			<div id="text-12" class="widget widget_text">			<div class="textwidget"></div>
+		</div>		</div><!-- .widget-area .first -->
+		
+				<div class="col-sm-4 footer-widget" role="complementary">
+			<div id="text-13" class="widget widget_text">			<div class="textwidget"><a class="rewlink" href="/contact/">Contact</a>&nbsp;
+<a class="rewlink" href="/dmca/">DMCA</a>&nbsp;
+<a class="rewlink" href="/donate/">Donate</a>&nbsp;
+<a class="rewlink" href="//feeds.feedburner.com/scanlibs">RSS</a></div>
+		</div>		</div><!-- .widget-area .second -->
+		
+				<div class="col-sm-4 footer-widget" role="complementary">
+			<div id="text-11" class="widget widget_text">			<div class="textwidget"><div style="display:none;">
+<!--LiveInternet counter--><script type="text/javascript"><!--
+document.write("<a href='//www.liveinternet.ru/click' "+
+"target=_blank><img src='//counter.yadro.ru/hit?t14.4;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";"+Math.random()+
+"' alt='' title='LiveInternet: показано число просмотров за 24"+
+" часа, посетителей за 24 часа и за сегодня' "+
+"border='0' width='88' height='31'><\/a>")
+//--></script><!--/LiveInternet-->
+</div></div>
+		</div>		</div><!-- .widget-area .third -->
+			</div>			</div>
+		</div>
+
+		<footer id="colophon" class="site-footer" role="contentinfo">
+			<div class="site-info container">
+				<div class="row">
+										<nav class="col-md-6">
+											</nav>
+					<div class="copyright col-md-6">
+						<a href="//scanlibs.com/" title="ScanLibs">© ScanLibs</a>											</div>
+				</div>
+			</div><!-- .site-info -->
+			<div class="scroll-to-top"><i class="fa fa-angle-up"></i></div><!-- .scroll-to-top -->
+		</footer><!-- #colophon -->
+	</div>
+<!-- #page -->
+
+  <script type="text/javascript">
+    jQuery( document ).ready( function( $ ){
+      if ( $( window ).width() >= 767 ){
+        $( '.navbar-nav > li.menu-item > a' ).click( function(){
+            if( $( this ).attr('target') !== '_blank' ){
+                window.location = $( this ).attr( 'href' );
+            }else{
+                var win = window.open($( this ).attr( 'href' ), '_blank');
+                win.focus();
+            }
+        });
+      }
+    });
+  </script>
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+<script>
+function recaptchaCallback(t) {
+  return new Promise(function(resolve, reject) {  
+
+    if (grecaptcha === undefined) {
+        //alert('Recaptcha non definito'); 
+        //return;
+        reject();
+    }
+
+    var response = grecaptcha.getResponse();
+    console.log(response);
+
+    if (!response) {
+        //alert('Coud not get recaptcha response'); 
+        //return;
+        reject();
+    }
+	$.ajax({
+	url: '/wp-admin/admin-ajax.php',
+	type: 'POST',
+	data: 'action=google_recaptcha&post_id=10887&token='+t,
+	success: function( data ) {
+		//console.log( data );
+		if(data == 'failed'){
+			reject();
+		}else{
+			$('.resolve-captcha-header-box').hide();
+			$('.download-links-recaptcha-widget-box').hide();
+			$('#captcha').hide();
+			$( '.download-links-recaptcha-widget-box' ).after( data );
+		
+		resolve();
+		}
+		
+	},
+    'error' : function(request,error)
+    {
+        
+        reject();   
+    }
+	});
+		
+    grecaptcha.reset();
+
+  }); //end promise
+}
+	
+</script>
+<script type='text/javascript' src='https://scanlibs.com/wp-content/themes/sparkling/inc/js/skip-link-focus-fix.js'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var ajaxsearchlite = {"ajaxurl":"https:\/\/scanlibs.com\/wp-admin\/admin-ajax.php","backend_ajaxurl":"https:\/\/scanlibs.com\/wp-admin\/admin-ajax.php","js_scope":"jQuery"};
+var ASL = {"ajaxurl":"https:\/\/scanlibs.com\/wp-admin\/admin-ajax.php","backend_ajaxurl":"https:\/\/scanlibs.com\/wp-admin\/admin-ajax.php","js_scope":"jQuery","detect_ajax":"0","scrollbar":"1","js_retain_popstate":"0","version":"4737","fix_duplicates":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://scanlibs.com/wp-content/plugins/ajax-search-lite/js/min/jquery.ajaxsearchlite.min.js'></script>
+<script>
+jQuery(document).ready(function($) {
+    $('.mylink').click(function(){
+        window.open( $(this).attr('data-url') );
+    });
+});
+jQuery(document).ready(function(){
+jQuery('.spoiler-body').hide()
+jQuery('.spoiler-head').click(function(){
+jQuery(this).toggleClass("folded").toggleClass("unfolded").next().toggle()
+});
+});
+</script>
+</body>
+</html>
