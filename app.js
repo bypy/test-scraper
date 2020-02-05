@@ -2,6 +2,8 @@ const request = require('request');
 const jsdom = require("jsdom");
 const fs = require('fs');
 const path = require('path');
+const lineReader = require('line-reader');
+const shortid = require('shortid');
 const { JSDOM } = jsdom;
 
 const pagesPath = path.join(__dirname, 'pages');
@@ -17,17 +19,17 @@ const dataPath = path.join(__dirname, 'data');
 const siteAddr = 'https://scanlibs.com/'
 const timeout = 4000 + 4000*Math.random();
 
-let urls = [
-    'https://scanlibs.com/learning-svg/',
-    'https://scanlibs.com/jump-start-sass/'
-];
+// let urls = [
+    // 'https://scanlibs.com/learning-svg/',
+    // 'https://scanlibs.com/jump-start-sass/'
+// ];
 
 
-const scrapePage = (htmlBody, pageName) => {
+const scrapePage = (htmlBody) => {
     let data = {};
 
     // Extracting data
-    const name = htmlBody.querySelector('h1').textContent;
+    const heading = htmlBody.querySelector('h1').textContent;
     const categoryItems = htmlBody.querySelector('span.cat-links').children;
     let categories = Array.prototype.slice.call(categoryItems);
     categories = categories
@@ -35,14 +37,14 @@ const scrapePage = (htmlBody, pageName) => {
         .map(item => item.textContent)
         .filter(item => (item));
 
-    let contImgSrc = htmlBody.querySelector('.entry-content > img').getAttribute('src');
+    let imgSrc = htmlBody.querySelector('.entry-content > img').getAttribute('src');
     let contImgExt = ""; // изначально расширение изображения нам неизвестно
 
-    if (/\.jpe?g$/.test(contImgSrc))
+    if (/\.jpe?g$/.test(imgSrc))
         contImgExt = '.jpg';
-    else if (/\.png$/.test(contImgSrc))
+    else if (/\.png$/.test(imgSrc))
         contImgExt = '.png';
-    else if (/\.webp$/.test(contImgSrc))
+    else if (/\.webp$/.test(imgSrc))
         contImgExt = '.webp';
         
     const container = htmlBody.querySelector('.entry-content');
@@ -92,87 +94,114 @@ const scrapePage = (htmlBody, pageName) => {
     const tagListEl = htmlBody.querySelectorAll('.entry-meta > .tagcloud > a');
     const tags = Array.prototype.map.call(tagListEl, item => item.textContent);
     
-    data.name = name;
+    let imgSaveName = shortid.generate();
+    
+    data.heading = heading;
     data.cat = categories;
-    data.img = path.join(__dirname, 'images', pageName.concat(contImgExt));
+    data.imgPath = path.join(__dirname, 'images', imgSaveName.concat(contImgExt));
     data.info = info;
     data.description = description;
     data.tags = tags;
 
     // сохраним картинку
     request
-        .get(siteAddr.concat(contImgSrc))
+        .get(siteAddr.concat(imgSrc))
         .on('error', (err) => {
             throw err;
         })
-        .pipe(fs.createWriteStream(data.img));
+        .pipe(fs.createWriteStream(data.imgPath));
     
     return data;
 
 };
 
 
-const noCookiesNext = (delay) => {
-    setTimeout(() => {
-        next();
-    }, delay);
-};
+// const planNextReq = async (url, cb, cookies, delay) => {
+    // delay = delay||timeout;
+    // setTimeout(() => {
+       // let resCookies = await nextReq(url, cookies);
+       // cb();
+    // }, delay);
+// };
 
 
-const next = cookies => {
 
-    if (!urls || urls.length === 0) {
-        console.log('All urls crawled');
-        return;
-    }
-
-    let currUrl = urls.pop();
-    let fileName = currUrl.replace(siteAddr, '').split('/')[0];
-
-    let reqOpts = {
-        timeout: 10000,
-        followRedirect: true,
-        jar: (cookies || request.jar()),
-        "User-Agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0"
-    };
-
-    request.get(currUrl, reqOpts, (error, response, body) => {
+const nextReq = (currUrl, cookies) => {
+    
+    return new Promise( (resolve, reject) => {
         
-        try {
-            if (error)
-                throw error;
-            if (response.statusCode !== 200)
-                throw new Error('error getting resource ' + currUrl);
+        if (!currUrl)
+            reject('Не передан адрес страницы для парсинга');
+        let pageId = currUrl.replace(siteAddr, '').split('/')[0];
+
+        let reqOpts = {
+            timeout: 10000,
+            followRedirect: true,
+            jar: (cookies || request.jar()),
+            "User-Agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:72.0) Gecko/20100101 Firefox/72.0"
+        };
+        
+        request.get(currUrl, reqOpts, (error, response, body) => {
             
-            let savePath = path.join(__dirname, 'pages', fileName.concat('.html'));
-            fs.writeFile(savePath, body, (err) => {
-                if (err) console.log(error);
-            });
-            const html = body.match(/<body.*?>.+<\/body>/s)[0].replace(/<script.*?>[\s\S]*?<\/script>/gs, "");
-            const htmlDom = new JSDOM(html);
-            const htmlBody = htmlDom.window.document.body;
+            try {
+                if (error)
+                    throw error;
+                if (response.statusCode !== 200)
+                    throw new Error('error getting resource ' + currUrl);
+                
+                let savePath = path.join(__dirname, 'pages', pageId.concat('.html'));
+                
+                fs.writeFile(savePath, body, (err) => {
+                    if (err) console.log(error);
+                });
+                const html = body.match(/<body.*?>.+<\/body>/s)[0].replace(/<script.*?>[\s\S]*?<\/script>/gs, "");
+                const htmlDom = new JSDOM(html);
+                const htmlBody = htmlDom.window.document.body;
 
-            const pageData = scrapePage(htmlBody, fileName);
+                const pageData = scrapePage(htmlBody);
+                //pageData.origName = pageId;
 
-            savePath = path.join(__dirname, 'data', fileName.concat('.json'));
-            fs.writeFile(savePath, JSON.stringify(pageData), (err) => {
-                if (err) throw error;
-            });
+                savePath = path.join(__dirname, 'data', pageId.concat('.json'));
+                fs.writeFile(savePath, JSON.stringify(pageData), (err) => {
+                    if (err) throw error;
+                });
 
-            if (!response.headers["set-cookie"])
-                noCookiesNext(timeout);
-            else
-                setTimeout(() => {
-                    next(response.headers["set-cookie"]);
-                }, timeout);
+                if (!response.headers["set-cookie"]) {
+                    console.log("Нет новых кук от сервера");
+                    resolve(reqOpts.jar);  
+                }
+                else
+                    resolve(response.headers["set-cookie"]);
 
-        } catch (err) {
-            console.log(err);
-            noCookiesNext(timeout);
+            } catch (err) {
+                console.log(err);
+                resolve(null);
+            }
+            
+        }); //request.get
+    }); //Promise
+    
+}; //nextReq
+
+const requestor = () => {
+    let cookies;
+    lineReader.eachLine('scanlib-missed.txt', function(line, last, cb) {
+        console.log(line);
+        if (last) {
+            cb(false); // stop reading
         }
-
+        if (line.trim() === '')
+            cb();
+        else {
+            let nextUrl = line.trim();
+            setTimeout( async () => {
+               cookies = await nextReq(url, cookies);
+               cb();
+            }, delay);
+        }
     });
 };
 
-next();
+// старт
+requestor();
 
