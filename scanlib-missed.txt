@@ -1,2 +1,1 @@
-http://localhost:7980/1
-http://localhost:7980/2
+D:\work\test-scraper\pages\learning-svg.html
