@@ -8,5 +8,6 @@
 _nodemon.log
 nginx_caches/
 images/
-# pages/
+pages/
+data/
 

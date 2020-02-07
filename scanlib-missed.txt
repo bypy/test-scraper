@@ -1,1 +1,3 @@
-D:\work\test-scraper\pages\learning-svg.html
+d:\_work\node-scraping\pages\learning-svg.html
+d:\_work\node-scraping\pages\jump-start-sass.html
+d:\_work\node-scraping\pages\modern-javascript-web-development-cookbook.html 
