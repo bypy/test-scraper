@@ -4,11 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cc": "node app_book_cc.js",
+    "scan": "node app_scanlib.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cyrillic-to-translit-js": "^3.1.0",
     "express": "^4.17.1",
     "jsdom": "^16.1.0",
     "line-reader": "^0.4.0",
