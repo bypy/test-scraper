@@ -34,7 +34,7 @@ const extractBodyTag = (resBody) => {
 const scrapePage = (htmlBody) => {
   let data = {};
 
-  const procVideoInfo = (pipedInfoString) => {
+  const procInfo = (pipedInfoString) => {
     const cleanInfo = [];
     const infoArr = pipedInfoString
       .replace(/\n/g, "")
@@ -105,6 +105,11 @@ const scrapePage = (htmlBody) => {
     return stripTags(HTMLMarkup.trim()).split("\n");
   };
 
+  const prepareDetails = (detailsElem) => {
+    return detailsElem.querySelector("p");
+  };
+
+
   // Extracting data
   const info = {};
   const description = [];
@@ -147,8 +152,9 @@ const scrapePage = (htmlBody) => {
   // const firstParWrapper = descrPars[0].parentNode;
   const underPicDataTag = descrPars[0];
   const descrLists = getDescendantListByTag(container, "ul");
+  const descrDetails = getDescendantListByTag(container, "details");
 
-  if (!descrPars && !descrLists) {
+  if (!descrPars && !descrLists && !descrDetails) {
     logLineAsync(logFN, "парсить нечего");
     return null; //
   }
@@ -166,33 +172,43 @@ const scrapePage = (htmlBody) => {
     if (curr === underPicDataTag) {
       if (filteredCategories.includes("Courses")) {
         // это описание видео
-        info.video = procVideoInfo(underPicDataTag.innerHTML);
+        info.video = procInfo(underPicDataTag.innerHTML);
       } else {
-        tmpBookInfo = procVideoInfo(curr.innerHTML);
+        tmpBookInfo = procInfo(curr.innerHTML);
         let items = ["Language", "Pub Date", "ISBN", "Pages", "Format", "Size"]
-        tmpBookInfo.forEach((item, index) => {
+        for (let index = 0; index < tmpBookInfo.length; index++) {
+          let item = tmpBookInfo[index];
           let key = items[index];
+          if (info.hasOwnProperty(key)) key = items[index+1];
           let outputItem;
           switch (key) {
             case "Pages":
               outputItem = parseInt(item).toString();
               break;
             case "Format":
-              outputItem = item.replace(/,\s*/, "/");
+              outputItem = item.replace(/,\s*/g, "/");
               break;
             case "ISBN":
-              outputItem = item.replace(/ISBN:\s?/i, "");
+              if (item.startsWith("ISBN")) {
+                outputItem = item.replace(/ISBN:\s?/i, "");
+              } else {
+                info["ISBN"] = "";
+                info["Pages"] = parseInt(item).toString();
+                continue;
+              }
               break;
             default:
               outputItem = item;
           }
-          info[key] = outputItem;
-        })
+          info[key]= outputItem;
+        }
       }
     } else if (descrPars && descrPars.indexOf(curr) !== -1) {
       description.push({p: stripTags(curr.innerHTML)});
     } else if (descrLists && descrLists.indexOf(curr) !== -1) {
       description.push({ul: prepareList(curr.innerHTML)});
+    } else if (descrDetails && descrDetails.indexOf(curr) !== -1) {
+      description.push({ol: prepareList(prepareDetails(curr).innerHTML)});
     }
 
     counter++;
