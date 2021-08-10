@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "cc": "node app_book_cc.js",
-    "scan": "node app_scanlib.js"
+    "scan": "node app_scanlib.js",
+    "sort": "node sorter.js"
   },
   "author": "",
   "license": "ISC",
