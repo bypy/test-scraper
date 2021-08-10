@@ -100,7 +100,7 @@ const scrapeB_OK_CC_Page = (htmlBody, url) => {
   var propsElem = htmlBody.querySelector(".bookDetailsBox");
 
   if (propsElem) {
-    var props = {};
+    props = {};
 
     Array.prototype.forEach.call(propsElem.children, (d) => {
       let prop = null;
@@ -130,7 +130,7 @@ const scrapeB_OK_CC_Page = (htmlBody, url) => {
   }
 
   var imgExt = ""; // изначально расширение изображения нам неизвестно
-  var coverNode = htmlBody.querySelector(".details-book-cover > img");
+  var coverNode = htmlBody.querySelector(".z-book-cover > img");
   // Обложка
   var coverSrc = coverNode ? coverNode.getAttribute("src") : "no-cover";
 
