@@ -10,6 +10,7 @@ nginx_caches/
 images/
 pages/
 data/
-_data-new/
 src/
-
+_data*
+_pages*
+result.csv
