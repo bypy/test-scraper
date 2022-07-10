@@ -20,7 +20,7 @@ const workMode = {
   isLocal: false,
   localPath: path.join(__dirname, "src", "response.html"),
 };
-const parseURLSource = path.join(__dirname, "src", "urls.txt");
+const parseURLSource = path.join(__dirname, "src", "urls-cc.txt");
 const reqTimeout = 4000 + 4000 * Math.random();
 
 [pagesPath, imgPath, dataPath].forEach((pth) => {
